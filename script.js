@@ -1,278 +1,181 @@
 // Assignment Code
 var alphaLower = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
+     "a",
+     "b",
+     "c",
+     "d",
+     "e",
+     "f",
+     "g",
+     "h",
+     "i",
+     "j",
+     "k",
+     "l",
+     "m",
+     "n",
+     "o",
+     "p",
+     "q",
+     "r",
+     "s",
+     "t",
+     "u",
+     "v",
+     "w",
+     "x",
+     "y",
+     "z",
 ];
 var alphaUpper = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
+     "A",
+     "B",
+     "C",
+     "D",
+     "E",
+     "F",
+     "G",
+     "H",
+     "I",
+     "J",
+     "K",
+     "L",
+     "M",
+     "N",
+     "O",
+     "P",
+     "Q",
+     "R",
+     "S",
+     "T",
+     "U",
+     "V",
+     "W",
+     "X",
+     "Y",
+     "Z",
 ];
-var alphaNum = [
-  "0",
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-];
+var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var symbols = [
-  " ",
-  "!",
-  "”",
-  "#",
-  "$",
-  "%",
-  "&",
-  "’",
-  "(",
-  ")",
-  "*",
-  "+",
-  ",",
-  "-",
-  ".",
-  "/",
-  ":",
-  ";",
-  "<",
-  "=",
-  ">",
-  "?",
-  "@",
-  "[",
-  "\\",
-  "]",
-  "^",
-  "_",
-  "`",
-  "{",
-  "|",
-  "}",
-  "~",
+     " ",
+     "!",
+     "”",
+     "#",
+     "$",
+     "%",
+     "&",
+     "’",
+     "(",
+     ")",
+     "*",
+     "+",
+     ",",
+     "-",
+     ".",
+     "/",
+     ":",
+     ";",
+     "<",
+     "=",
+     ">",
+     "?",
+     "@",
+     "[",
+     "\\",
+     "]",
+     "^",
+     "_",
+     "`",
+     "{",
+     "|",
+     "}",
+     "~",
 ];
-var generateBtn = document.querySelector(
-  "#generate"
-);
-var pwd = [];
+var generateBtn = document.querySelector("#generate");
 var finalPwd = "";
-// will be in functtion
+
+// defining the function
 function generatePassword() {
-  var pwdLgthUser = prompt(
-    "How many characters long would you like the password to be?"
-  );
+     var pwd = [];
+     // Alert for how many characters to be included
+     var pwdLgthUser = prompt(
+          "How many characters long would you like the password to be?"
+     );
+     // While loop to force a number |b| 8 and 128
+     while (pwdLgthUser < 8 || pwdLgthUser > 128) {
+          var pwdLgthUser = prompt(
+               "Password must be between 8 and 128 characters."
+          );
+     }
 
-  var pwdLgthInt = parseInt(
-    pwdLgthUser
-  );
+     // Alerts for the types of characters that could be included in the password
+     var confirmUpper = confirm(
+          "Do you want your password to include UPPERCASE Letters?"
+     );
+     var confirmLower = confirm(
+          "Do you want your password to include lowercase letters?"
+     );
+     var confirmNum = confirm("Do you want your password to include Numbers?");
+     var confirmSym = confirm(
+          "Do you want your password to include Special Symbols?"
+     );
 
-  while (
-    pwdLgthUser < 8 ||
-    pwdLgthUser > 128
-  ) {
-    var pwdLgthUser = prompt(
-      "Password must be between 8 and 128 characters."
-    );
-    var pwdLgthInt = parseInt(
-      pwdLgthUser
-    );
-    console.log(
-      "pwdLgthIntFromScript:",
-      pwdLgthInt
-    );
-  }
+     // While loop to make sure that at least one item was selected
+     while (!confirmUpper && !confirmLower && !confirmNum && !confirmSym) {
+          alert(
+               "Your password must contain some characters.  Please click 'OK' to confirm one of the following choices:"
+          );
+          var confirmUpper = confirm(
+               "Do you want your password to include UPPERCASE Letters?"
+          );
+          var confirmLower = confirm(
+               "Do you want your password to include lowercase letters?"
+          );
+          var confirmNum = confirm(
+               "Do you want your password to include Numbers?"
+          );
+          var confirmSym = confirm(
+               "Do you want your password to include Special Symbols?"
+          );
+     }
 
-  if (pwdLgthInt > 99) {
-    alert("Why are you a Sadist?");
-  }
-  console.log("length:", length);
+     // Below builds the array out of the groups the user selected
+     if (confirmUpper) {
+          pwd = pwd.concat(alphaUpper);
+     }
+     if (confirmLower) {
+          pwd = pwd.concat(alphaLower);
+     }
+     if (confirmNum) {
+          pwd = pwd.concat(numbers);
+     }
+     if (confirmSym) {
+          pwd = pwd.concat(symbols);
+     }
 
-  console.log(
-    "pwdLgthIntOutsideOfScript:",
-    pwdLgthInt
-  );
+     // The loop which adds the password together from the selected array
+     for (let index = 0; index < pwdLgthUser; index++) {
+          var random = Math.floor(Math.random() * pwd.length);
+          var element = pwd[random];
+          finalPwd = finalPwd + element;
+     }
 
-  var confirmUpper = confirm(
-    "Do you want your password to include UPPERCASE Letters?"
-  );
-
-  var confirmLower = confirm(
-    "Do you want your password to include lowercase letters?"
-  );
-
-  var confirmNum = confirm(
-    "Do you want your password to include Numbers?"
-  );
-
-  var confirmSym = confirm(
-    "Do you want your password to include Special Symbols?"
-  );
-
-  while (
-    !confirmUpper &&
-    !confirmLower &&
-    !confirmNum &&
-    !confirmSym
-  ) {
-    alert(
-      "Your password must contain some characters.  Please click 'OK' to confirm one of the following choices:"
-    );
-
-    var confirmUpper = confirm(
-      "Do you want your password to include UPPERCASE Letters?"
-    );
-
-    var confirmLower = confirm(
-      "Do you want your password to include lowercase letters?"
-    );
-
-    var confirmNum = confirm(
-      "Do you want your password to include Numbers?"
-    );
-
-    var confirmSym = confirm(
-      "Do you want your password to include Special Symbols?"
-    );
-  }
-
-  if (confirmUpper) {
-    pwd = pwd.concat(alphaUpper);
-  }
-
-  if (confirmLower) {
-    pwd = pwd.concat(alphaLower);
-  }
-
-  if (confirmNum) {
-    pwd = pwd.concat(alphaNum);
-  }
-
-  if (confirmSym) {
-    pwd = pwd.concat(symbols);
-  }
-
-  //  console.log(pwd)
-  //  console.log('confirmUpperBeforeWhileLoop:', confirmUpper);
-  //  console.log('confirmLowerBeforeWhileLoop:', confirmLower);
-  //  console.log('confirmNumBeforeWhileLoop:', confirmNum);
-  //  console.log('confirmSymBeforeWhileLoop:', confirmSym);
-
-  for (
-    let index = 0;
-    index < pwdLgthInt;
-    index++
-  ) {
-    var random = Math.floor(
-      Math.random() * pwd.length
-    );
-    var element = pwd[random];
-    finalPwd = finalPwd + element;
-    console.log("finalPwd:", finalPwd);
-  }
-
-  return finalPwd;
+     // The value to be returned out of the function
+     return finalPwd;
 }
 
-// while (pwdLgthUser < 8 || pwdLgthUser > 128) {
-//   var pwdLgthUser = prompt("Password must be between 8 and 128 character.");
-//   var pwdLgthInt = parseInt(pwdLgthUser);
-//   console.log('pwdLgthIntFromScript:', pwdLgthInt);
-// }
-
-// console.log('pwdLgthIntOutsideOfScript:', pwdLgthInt)
-
-// while (!confirmUpper && !confirmLower && !confirmNum && !confirmSym) {
-//   alert("Your password must contain some characters.  Please click 'OK' to confirm one of the following choices:");
-
-//   var confirmUpper = confirm("Do you want your password to include UPPERCASE Letters?");
-
-//   var confirmLower = confirm("Do you want your password to include lowercase letters?");
-
-//   var confirmNum = confirm("Do you want your password to include Numbers?");
-
-//   var confirmSym = confirm("Do you want your password to include Special Symbols?");
-// }
-
-// console.log('confirmUpperAfterWhileLoop:', confirmUpper);
-// console.log('confirmLowerAfterWhileLoop:', confirmLower);
-// console.log('confirmNumAfterWhileLoop:', confirmNum);
-// console.log('confirmSymAfterWhileLoop:', confirmSym);
-
-// var generateBtn = document.querySelector("#generate");
-
-// var alphaLower = ["a",	"b",	"c",	"d",	"e",	"f",	"g",	"h",	"i",	"j",	"k",	"l",	"m",	"n",	"o",	"p",	"q",	"r",	"s",	"t",	"u",	"v",	"w",	"x",	"y",	"z"];
-
-// var alphaUpper = ["A",	"B",	"C",	"D",	"E",	"F",	"G",	"H",	"I",	"J",	"K",	"L",	"M",	"N",	"O",	"P",	"Q",	"R",	"S",	"T",	"U",	"V",	"W",	"X",	"Y",	"Z"];
-
-// var alphaNum = ["0",	"1",	"2",	"3",	"4",	"5",	"6",	"7",	"8",	"9"];
-
-// var symbols = [" ", "!", "”", "#", "$", "%", "&", "’", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~"];
-
-// Write password to the #password input
 function writePassword() {
-  // all code will be inside of this block or lower
-  var password = generatePassword();
+     // All code will be inside of this block or lower
+     // Added the value below to empty string before running the function (helps if running multiple times)
+     finalPwd = "";
 
-  var passwordText = document.querySelector(
-    "#password"
-  );
+     var password = generatePassword();
 
-  passwordText.value = password;
+     var passwordText = document.querySelector("#password");
+
+     passwordText.value = password;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener(
-  "click",
-  writePassword
-);
+// On a user click runs the function writePassword which includes the function generatePassword
+generateBtn.addEventListener("click", writePassword);
