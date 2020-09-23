@@ -6,9 +6,7 @@ Please excuse for the layout of the Javascript. I cannot find the setting needed
 
 An earlier attempt put the pwdLgthUser into a interger variable, but later testing showed that this was an un-needed step and was removed.
 
-An earlier version had the variable pwd defined outside the function. The setup caused for the possiblity of unwanted characters being selcted and it was relocated to live within generatePassword function.
-
-The current code allows for the possiblity of a chosen catagory not being selected for the new password. I am trying to figure out how to correct for this but my only current idea would be to parse out letters from each array randomly. Using indiviudal arrays would cause a noticable pattern in the layout itself. Ex: Ab1!Cd2@ and so on. I am of the thinking that given these constraints of my ability, it would be more secure to have each letter have the possibilty of a random character vs the random characters from a set group in a repeating position.
+There is a section of code commented out that did not remove the possiblity of a chosen catagory not being selected for the new password. The code that is running guarantees the inclusion of all selected options because the options are run in sequence and the minimium password length is greater than the number of options presented.
 
 # 03 JavaScript: Password Generator
 
